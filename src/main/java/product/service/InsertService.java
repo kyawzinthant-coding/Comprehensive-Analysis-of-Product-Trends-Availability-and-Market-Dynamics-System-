@@ -1,6 +1,7 @@
 package product.service;
 
 import product.Template.ProductCSVHandler;
+import product.factory.ProductFactory;
 import product.model.Product;
 
 import java.util.LinkedList;
@@ -14,9 +15,9 @@ public class InsertService extends ProductCSVHandler {
     protected void operate(LinkedList<Product> products) {
 
 
-        int ID = (int) (Math.random() * 99) + 1;
         String name = userInput.getName();
         String category = userInput.getCategory();
+
 
         if (search.searchByName_and_Category(productList,name,category)>=0){
             System.out.println("Product already exists");
@@ -24,19 +25,17 @@ public class InsertService extends ProductCSVHandler {
             return;
         }
 
-        String description = userInput.getDescription();
-        String brand = userInput.getBrand();
-        String price = userInput.getPrice();
-        String stock = userInput.getStock();
-        String color = userInput.getColor();
-        String size = userInput.getSize();
-        String availability = userInput.getAvailability();
+        int ID = (int) (Math.random() * 99) + 1;
 
+        Product newProduct = ProductFactory.createProductWithPartial(name, category, userInput, ID);
+        productList.add(newProduct);
 
-        Product newProduct = new Product(name, description, brand, category, Integer.parseInt(price), "USD", Integer.parseInt(stock), color, size, availability, ID);
-        products.add(newProduct);
 
         System.out.println("✅ Product inserted successfully!");
     }
 
+    public static void main(String[] args) {
+        InsertService insertService = new InsertService("Data/productDataset.csv");
+        insertService.process();
+    }
 }
