@@ -1,5 +1,7 @@
 package product.validation;
 
+import product.interfaces.Input;
+
 public class AvailabilityInput implements Input {
 
     private enum AvailabilityStatus {

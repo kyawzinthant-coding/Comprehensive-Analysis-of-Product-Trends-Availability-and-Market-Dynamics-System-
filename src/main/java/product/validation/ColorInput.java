@@ -1,6 +1,8 @@
 package product.validation;
 
-public class ColorInput implements Input{
+import product.interfaces.Input;
+
+public class ColorInput implements Input {
     @Override
     public String input() {
         System.out.print("Enter color: ");

@@ -1,6 +1,8 @@
 package product.validation;
 
-public class PriceInput implements Input{
+import product.interfaces.Input;
+
+public class PriceInput implements Input {
     @Override
     public String input() {
         System.out.print("Enter price (1-1000): ");

@@ -1,5 +1,7 @@
 package product.validation;
 
+import product.interfaces.Input;
+
 public class SizeInput implements Input {
 
     private static final String[] SIZE_OPTIONS = {

@@ -1,4 +1,4 @@
-package product.validation;
+package product.interfaces;
 
 import java.util.Scanner;
 

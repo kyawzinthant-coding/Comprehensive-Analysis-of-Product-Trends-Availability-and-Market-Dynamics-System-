@@ -1,6 +1,8 @@
 package product.validation;
 
-public class DescriptionInput implements  Input{
+import product.interfaces.Input;
+
+public class DescriptionInput implements Input {
 
     @Override
     public String input() {

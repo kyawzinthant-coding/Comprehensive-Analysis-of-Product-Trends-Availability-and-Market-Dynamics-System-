@@ -1,5 +1,7 @@
 package product.validation;
 
+import product.interfaces.Input;
+
 public class NameInput implements Input {
     public String input() {
         System.out.print("Enter Name: ");

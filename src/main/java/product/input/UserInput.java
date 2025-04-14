@@ -1,5 +1,6 @@
 package product.input;
 
+import product.interfaces.Input;
 import product.validation.*;
 import java.util.EnumMap;
 import java.util.Map;

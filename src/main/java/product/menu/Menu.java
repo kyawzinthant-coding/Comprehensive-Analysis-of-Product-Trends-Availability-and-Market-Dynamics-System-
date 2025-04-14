@@ -1,5 +1,10 @@
 package product.menu;
 
+import product.factory.ReportFactory;
+import product.service.DeleteService;
+import product.service.InsertService;
+import product.service.UpdateService;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -42,16 +47,17 @@ public class Menu {
             input = getMenuNo();
             switch (input) {
                 case "1":
-                    // Call insert controller
+                    new InsertService(filePath).process();
                     break;
                 case "2":
-                    // Call update controller
+                    new UpdateService(filePath).process();
                     break;
                 case "3":
-                    // Call delete controller
+                    new DeleteService(filePath).process();
                     break;
                 case "4":
-                    // Call report controller
+                    ReportFactory reportFactory = new ReportFactory();
+                    reportFactory.getReport(filePath).report();
                     break;
                 case "5":
                     System.out.println("Exiting...");

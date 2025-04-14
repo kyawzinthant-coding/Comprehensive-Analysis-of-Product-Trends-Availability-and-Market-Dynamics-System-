@@ -27,45 +27,16 @@ public abstract class ProductCSVHandler {
         writeCSV();
     }
 
-    private void readCSV(){
-        FileReader fr = null;
-        try {
-            fr = new FileReader(filePath);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        CSVReader csvReader = new CSVReader(fr);
-        String[] str;
-        while (true) {
-            try {
-                if ((str = csvReader.readNext()) == null) break;
-            } catch (IOException | CsvValidationException e) {
-                throw new RuntimeException(e);
+    private void readCSV() {
+        try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
+            String[] row;
+            while ((row = reader.readNext()) != null) {
+                productList.add(new Product(
+                        row[0], row[1], row[2], row[3], Integer.parseInt(row[4]),
+                        row[5], Integer.parseInt(row[6]), row[7], row[8], row[9], Integer.parseInt(row[10])
+                ));
             }
-
-            productList.add(new Product(
-                    str[0],                    // name
-                    str[1],                    // description
-                    str[2],                    // brand
-                    str[3],                    // category
-                    Integer.parseInt(str[4]),   // price (Fixed)
-                    str[5],                    // currency
-                    Integer.parseInt(str[6]),   // stock (Fixed)
-                    str[7],                    // color
-                    str[8],                    // size
-                    str[9],                    // availability
-                    Integer.parseInt(str[10])   // internalID
-            ));
-
-        }
-        try {
-            csvReader.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            fr.close();
-        } catch (IOException e) {
+        } catch (IOException | CsvValidationException e) {
             throw new RuntimeException(e);
         }
     }
@@ -81,6 +52,23 @@ public abstract class ProductCSVHandler {
     }
 
     protected abstract void operate(LinkedList<Product> products);
+
+
+    public static LinkedList<Product> readCSV(String filePath) {
+        LinkedList<Product> productList = new LinkedList<>();
+        try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
+            String[] row;
+            while ((row = reader.readNext()) != null) {
+                productList.add(new Product(
+                        row[0], row[1], row[2], row[3], Integer.parseInt(row[4]),
+                        row[5], Integer.parseInt(row[6]), row[7], row[8], row[9], Integer.parseInt(row[10])
+                ));
+            }
+        } catch (IOException | CsvValidationException e) {
+            throw new RuntimeException(e);
+        }
+        return productList;
+    }
 
 
 

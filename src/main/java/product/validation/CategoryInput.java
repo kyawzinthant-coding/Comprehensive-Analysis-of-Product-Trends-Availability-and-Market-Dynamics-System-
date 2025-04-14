@@ -1,5 +1,7 @@
 package product.validation;
 
+import product.interfaces.Input;
+
 import java.util.Scanner;
 
 public class CategoryInput implements Input {
