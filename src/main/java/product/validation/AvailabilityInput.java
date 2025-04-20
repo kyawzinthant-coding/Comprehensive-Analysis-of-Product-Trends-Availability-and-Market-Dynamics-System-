@@ -2,7 +2,15 @@ package product.validation;
 
 import product.interfaces.Input;
 
+import java.util.Scanner;
+
 public class AvailabilityInput implements Input {
+
+    private final Scanner sc;
+
+    public AvailabilityInput(Scanner sc) {
+        this.sc = sc;
+    }
 
     private enum AvailabilityStatus {
         IN_STOCK("In stock", "in_stock"),

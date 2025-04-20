@@ -14,7 +14,6 @@ public class InsertService extends ProductCSVHandler {
     @Override
     protected void operate(LinkedList<Product> products) {
 
-
         String name = userInput.getName();
         String category = userInput.getCategory();
 
@@ -34,8 +33,5 @@ public class InsertService extends ProductCSVHandler {
         System.out.println("✅ Product inserted successfully!");
     }
 
-    public static void main(String[] args) {
-        InsertService insertService = new InsertService("Data/productDataset.csv");
-        insertService.process();
-    }
+
 }

@@ -2,7 +2,15 @@ package product.validation;
 
 import product.interfaces.Input;
 
+import java.util.Scanner;
+
 public class DescriptionInput implements Input {
+
+    private  final  Scanner sc ;
+
+    public DescriptionInput(Scanner sc) {
+        this.sc = sc;
+    }
 
     @Override
     public String input() {

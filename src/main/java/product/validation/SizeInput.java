@@ -2,7 +2,16 @@ package product.validation;
 
 import product.interfaces.Input;
 
+import java.util.Scanner;
+
 public class SizeInput implements Input {
+
+
+    private final  Scanner sc;
+
+    public SizeInput(Scanner sc) {
+        this.sc = sc;
+    }
 
     private static final String[] SIZE_OPTIONS = {
         "XS", "S", "M", "L", "XL", "XXL",

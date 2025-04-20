@@ -2,7 +2,15 @@ package product.validation;
 
 import product.interfaces.Input;
 
+import java.util.Scanner;
+
 public class StockInput implements Input {
+
+    private final  Scanner sc ;
+
+    public StockInput(Scanner sc) {
+        this.sc = sc;
+    }
 
     public String input() {
         System.out.print("Enter stock (1-1000): ");

@@ -6,6 +6,12 @@ import java.util.Scanner;
 
 public class CategoryInput implements Input {
 
+    private  final Scanner sc;
+
+    public CategoryInput(Scanner sc) {
+        this.sc = sc;
+    }
+
     private static final String[] CATEGORIES = {
         "Makeup", "Camping & Hiking", "Books & Stationery", "Men's Clothing",
         "Skincare", "Furniture", "Health & Wellness", "Cleaning Supplies",
@@ -22,7 +28,7 @@ public class CategoryInput implements Input {
     private static final String INPUT_PROMPT = "Choose one of the above categories (1-%d): ";
     private static final String ERROR_MESSAGE = "Invalid option. Please enter a number between 1 and %d: ";
 
-    private static final Scanner sc = new Scanner(System.in);
+
 
     @Override
     public String input() {
@@ -90,9 +96,5 @@ public class CategoryInput implements Input {
         return option >= 1 && option <= CATEGORIES.length;
     }
 
-    public static void main(String[] args) {
-        CategoryInput categoryInput = new CategoryInput();
-        String category = categoryInput.input();
-        System.out.println("Selected category: " + category);
-    }
+
 }

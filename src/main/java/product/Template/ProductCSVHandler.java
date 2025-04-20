@@ -8,20 +8,22 @@ import product.service.SearchService;
 
 import java.io.*;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public abstract class ProductCSVHandler {
 
     protected LinkedList<Product> productList = new LinkedList<>();
     protected final String filePath;
-    protected static UserInput userInput = UserInput.getInstance();
+
+    protected static UserInput userInput = UserInput.getInstance(new Scanner(System.in));
     protected static SearchService search = SearchService.getInstance();
+    protected static Scanner sc = new Scanner(System.in);
 
     public ProductCSVHandler(String filePath) {
         this.filePath = filePath;
     }
 
     public final void process() {
-        System.out.println(productList);
         readCSV();
         operate(productList);
         writeCSV();
