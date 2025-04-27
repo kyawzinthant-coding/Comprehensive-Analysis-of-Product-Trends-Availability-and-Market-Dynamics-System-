@@ -5,14 +5,12 @@ import product.interfaces.Input;
 import java.util.Scanner;
 
 public class NameInput implements Input {
-
-
     private final Scanner sc;
 
     public NameInput(Scanner sc) {
         this.sc = sc;
     }
-
+    @Override
     public String input() {
         System.out.print("Enter Name: ");
         String name =sc.nextLine();
