@@ -2,8 +2,10 @@ package product.validation;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -11,32 +13,39 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NameInputTest {
 
-
-    private InputStream inputStream;
-    private NameInput nameInput;
-    private final Scanner scanner = new Scanner(System.in);
+    NameInput nameInput;
+    InputStream inputStream;
 
     @BeforeEach
     void setUp() {
+        nameInput = new NameInput(new Scanner(System.in));
         inputStream = System.in;
-        nameInput = new NameInput(scanner);
-    }
-
-    @AfterEach
-    void resetSystemInput() {
-        System.setIn(inputStream);
-    }
-
-    @Test
-    void testValidName(){
-        String input = "Macbook Pro";
-        System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
-        String result = nameInput.input();
-        assertEquals("Macbook Pro", result);
     }
 
     @AfterEach
     void tearDown() {
+        System.setIn(inputStream);
+    }
 
+    @Test
+    @DisplayName("Test valid input Name")
+    void validInputName() {
+        String input = "Macbook";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        nameInput = new NameInput(new Scanner(System.in));
+        String result = nameInput.input();
+        assertEquals("Macbook", result);
+    }
+
+    @Test
+    @DisplayName("Test valid input Name")
+    void InvalidInputName() {
+        String input = "macbook";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        nameInput = new NameInput(new Scanner(System.in));
+        String result = nameInput.input();
+        assertEquals("Macbook", result);
     }
 }

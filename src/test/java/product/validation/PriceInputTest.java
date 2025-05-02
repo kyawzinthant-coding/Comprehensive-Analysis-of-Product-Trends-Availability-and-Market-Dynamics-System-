@@ -9,6 +9,8 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Scanner;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class PriceInputTest {
 
     PriceInput priceInput;
@@ -33,6 +35,20 @@ class PriceInputTest {
         priceInput = new PriceInput(new Scanner(System.in));
 
         String result = priceInput.input();
-        assert result.equals("1000");
+
+        assertEquals("1000", result);
+    }
+
+    @Test
+    @DisplayName("Test invalid price ( out of range )")
+    void testInValidPrice() {
+        ByteArrayInputStream testInput = new ByteArrayInputStream("1200\n".getBytes());
+        System.setIn(testInput);
+
+        priceInput = new PriceInput(new Scanner(System.in));
+
+        String result = priceInput.input();
+
+        assertEquals("1000", result);
     }
 }

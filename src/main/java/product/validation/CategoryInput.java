@@ -36,6 +36,11 @@ public class CategoryInput implements Input {
         return getValidCategory();
     }
 
+    public String input(Scanner sc) {
+        displayCategories();
+        return getValidCategory();
+    }
+
     private void displayCategories() {
         int maxLength = calculateMaxLength();
         
